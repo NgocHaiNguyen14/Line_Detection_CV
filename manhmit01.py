@@ -6,7 +6,7 @@ global set_time
 def record_video(output_filename='output.mp4', fps=20.0, resolution=(640, 480)):
     global set_time
     now = time.time()
-    cap = cv2.VideoCapture(1)#setup 0 là laptop, 1 là camera thiết bị ngoài
+    cap = cv2.VideoCapture(0)
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
     out = cv2.VideoWriter(output_filename, fourcc, fps, resolution)
     while True:
@@ -22,7 +22,7 @@ def record_video(output_filename='output.mp4', fps=20.0, resolution=(640, 480)):
         height, width, channels = img.shape
         gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         blurred = cv2.bilateralFilter(gray_img, 9, 75, 75)
-        edges_img = cv2.Canny(blurred, 50, 150)  # tự fix để lấy được độ nhận diện đẹp nhất
+        edges_img = cv2.Canny(blurred, 50, 150)  
 
         height_area_target = int(height * 0.85)
         width_area_target_1 = int(width * 0.25)
@@ -60,7 +60,7 @@ def record_video(output_filename='output.mp4', fps=20.0, resolution=(640, 480)):
                 u = khoang_cach
 
         cv2.rectangle(img, (width_area_target_1, height_area_target), (width_area_target_2, int(height * 1.05)),
-                      (0, 0, 255), int(height * width / 1e5))  # Màu đỏ, độ dày 5
+                      (0, 0, 255), int(height * width / 1e5))  
         cv2.line(img, (int(width / 2) - 2, int(height * 0.98)), (int(width / 2) + 2, int(height * 0.98)), (0, 255, 0),
                  int(height * width / 1e5) + 5)
         cv2.line(img, (int(y_target - 2), int(x_target * 0.98)), (int(y_target + 2), int(x_target * 0.98)),
@@ -75,6 +75,6 @@ def record_video(output_filename='output.mp4', fps=20.0, resolution=(640, 480)):
     out.release()
     cv2.destroyAllWindows()
 
-if _name_ == "_main_":
-    set_time = 500 #thời gian run project
+if __name__ == "__main__":
+    set_time = 50000 
     record_video()

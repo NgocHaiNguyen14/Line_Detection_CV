@@ -68,7 +68,7 @@ while True:
             cv2.circle(resized_image, (mid_x + 240, mid_y + 150), 5, (255, 0, 0), -1)
             cv2.line(resized_image, (roi_center_x + 240, mid_y + 150), (mid_x + 240, mid_y + 150), (0, 0, 255), 1)
             # Display the angle difference with black text
-            cv2.putText(resized_image, f"Angle: {angle_diff:.2f}", (mid_x + 240, mid_y + 140), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1)
+           # cv2.putText(resized_image, f"Angle: {angle_diff:.2f}", (mid_x + 240, mid_y + 140), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1)
     
     # Draw the center line of the ROI
     cv2.line(resized_image, (roi_center_x + 240, 150), (roi_center_x + 240, 150 + roi.shape[0]), (255, 255, 0), 2)
